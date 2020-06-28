@@ -3,9 +3,9 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zallpychallengefront/colors/ColorsApp.dart';
 import 'QuestionPage.dart';
 
-const Color colorGreen = Color.fromRGBO(37, 152, 74, 1.0);
 
 class HomePage extends StatefulWidget {
   /*
@@ -34,9 +34,6 @@ class _HomePageState extends State<HomePage> {
   List<String> _backQuestions = [];
   List<String> _backAnswers = [];
 
-  // Future<Map>
-  /*
-  */
   _callBackend() async {
 
     Dio dio = new Dio();
@@ -49,8 +46,6 @@ class _HomePageState extends State<HomePage> {
     Response response = await dio.get('https://10.0.2.2:5001/questions');
 
     var responseBody = response.data;
-
-    //return responseBody;
 
     print(responseBody.toString());
 
@@ -71,31 +66,30 @@ class _HomePageState extends State<HomePage> {
     ];
   }
 
-  @override
-  void initState() {
-
-
-    // TODO: implement initState
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Colors.black,
 
-      body: Center(
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
-              child: Text("QUIZ",
+              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: Text(
+                "QUIZ",
                 style: TextStyle(
-                    color: colorGreen,
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'FredokaOne',
+                  color: Colors.lightBlue,
+                  fontSize: 50,
                 ),
               ),
 
@@ -103,40 +97,43 @@ class _HomePageState extends State<HomePage> {
 
             Container(
               padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: Text("Origem das Montadoras",
+              child: Text(
+                "Origem das Montadoras",
                 style: TextStyle(
-                    color: colorGreen,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontFamily: 'FredokaOne'
                 ),
               ),
-
             ),
 
             Container(
-              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: Text("?",
-                style: TextStyle(
-                    color: colorGreen,
-                    fontSize: 100,
-                    fontWeight: FontWeight.bold
-                ),
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.9),
+                      spreadRadius: 60,
+                      blurRadius: 60,
+                    )
+                  ]
+              ),
+              child: ClipOval(
+                child: Image.asset("images/car2.png"),
               ),
             ),
 
-
-
-
-
-
+            SizedBox(
+              height: 30,
+            ),
 
             Container(
               child: RaisedButton(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Text("COMEÇAR"),
-                color: colorGreen,
+                color: Colors.blue,
                 textColor: Colors.white,
                 onPressed: () {
-
                   _callBackend().then((result) {
                     print('In Builder');
 
@@ -150,36 +147,10 @@ class _HomePageState extends State<HomePage> {
                           )
                       ),
                     );
-
                   });
-
-
-
-                  /*
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => QuestionPage(
-                          questionNumber: 1,
-                          backQuestions: _backQuestions,
-                          backAnswers: _backAnswers,
-                        )
-                    ),
-                  );
-                      */
-
-
-
-
-
                 },
               ),
             ),
-
-
-
-
-
           ],
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zallpychallengefront/ResultWidgets/BadResultWidget.dart';
 import 'package:zallpychallengefront/ResultWidgets/GoodResultWidget.dart';
-import 'HomePage.dart';
+import 'package:zallpychallengefront/colors/ColorsApp.dart';
 import 'package:flutter/widgets.dart';
 
 class ResultPage extends StatefulWidget {
@@ -31,19 +31,19 @@ class _ResultPageState extends State<ResultPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: colorDarkBlue,
       body: Center(
         child: Column(
-
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
           children: <Widget>[
-
-
             Container(
               child: Text(
-                "Você acertou ${widget.answerResult*20} % das respostas.",
+                "Você acertou ${widget.answerResult*20}% das respostas.",
                 style: TextStyle(
-                    fontSize: 20
+                  color: Colors.white,
+                  fontFamily: 'FredokaOne',
+                  fontSize: 20
                 ),
               ),
             ),
@@ -57,11 +57,17 @@ class _ResultPageState extends State<ResultPage> {
 
             Container(
               child: RaisedButton(
-                child: Text("VOLTAR PARA INICIO"),
-                color: colorGreen,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                color: Colors.green,
+                child: Text(
+                  "VOLTAR PARA O INÍCIO",
+                  style: TextStyle(
+                      fontFamily: 'FredokaOne',
+                    ),
+                ),
                 textColor: Colors.white,
                 onPressed: (){
-
                   Navigator.pop(context);
                 },
               ),

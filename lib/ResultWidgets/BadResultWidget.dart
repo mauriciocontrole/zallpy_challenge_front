@@ -8,9 +8,24 @@ class BadResultWidget extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-          Text("Você tem mais uma oportunidade.",
+          Text(
+            "Você vai melhorar!",
             style: TextStyle(
-                fontSize: 20
+                fontSize: 18,
+                fontFamily: 'FredokaOne',
+                color: Colors.white
+            ),
+          ),
+          Image.asset(
+            'images/bad_result.png',
+            color: Colors.white,
+          ),
+          Text(
+            "Tente novamente",
+            style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'FredokaOne',
+                color: Colors.white
             ),
           ),
         ],),
